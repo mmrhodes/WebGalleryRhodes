@@ -15,22 +15,26 @@ import model.GalleryItem;
 @WebServlet("/addItemServlet")
 public class addItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
     public addItemServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-	
+        super();
+        }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String item = request.getParameter("item");
-		GalleryItem li = new GalleryItem(item);
+		// TODO Auto-generated method stub
+		String title = request.getParameter("title");
+		String artistName = request.getParameter("artistName");
+		String media = request.getParameter("media");
+		String year = request.getParameter("year");
+		double value = Double.parseDouble(request.getParameter("value"));
+		
+		GalleryItem li = new GalleryItem(title, artistName, media, year, value);
 		GalleryItemHelper dao = new GalleryItemHelper();
 		dao.insertItem(li);
 		

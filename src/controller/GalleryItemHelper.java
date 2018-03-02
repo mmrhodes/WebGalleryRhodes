@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import model.GalleryItem;
 
 public class GalleryItemHelper {
-	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("GalleryRhodes");
+	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("WebGalleryRhodes");
 
 	public void insertItem(GalleryItem toAdd) {
 		EntityManager em = emfactory.createEntityManager();
@@ -18,7 +18,6 @@ public class GalleryItemHelper {
 		em.persist(toAdd);
 		em.getTransaction().commit();
 		em.close();
-
 	}
 
 	public List<GalleryItem> showAllItems() {
@@ -27,7 +26,6 @@ public class GalleryItemHelper {
 		List<GalleryItem> allItems = allResults.getResultList();
 		em.close();
 		return allItems;
-		
 	}
 
 	public void deleteItem(GalleryItem toDelete) {
@@ -46,17 +44,18 @@ public class GalleryItemHelper {
 		em.close();
 	}
 
-		
-
-	public List<GalleryItem> searchForItemsByName(String artworkName) {
+	public GalleryItem searchForItemById(Integer tempId) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<GalleryItem> typedQuery = em.createQuery("select la from Artwork la where la.artwork = :selectedArtwork", GalleryItem.class);
-		typedQuery.setParameter("selectedArtwork", artworkName);
-		List<GalleryItem> result = typedQuery.getResultList();
+		GalleryItem foundItem = em.find(GalleryItem.class, tempId);
 		em.close();
-		return result;
-	
-	}
-
+		return foundItem;
+}
+	public void updateItem(GalleryItem itemToUpdate) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(itemToUpdate);
+		em.getTransaction().commit();
+		em.close();
+}
 }

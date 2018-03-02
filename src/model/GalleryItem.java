@@ -1,7 +1,5 @@
 package model;
 
-import java.text.DecimalFormat;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,30 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="artwork")
+@Table(name = "Gallery")
 public class GalleryItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name= "ID")
 	private int id;
-	@Column(name="TITLE")
+	@Column(name = "TITLE")
 	private String title;
-	@Column(name="ARTIST_NAME")
+	@Column(name = "ARTIST_NAME")
 	private String artistName;
-	@Column(name="MEDIA")
+	@Column(name = "MEDIA")
 	private String media;
-	@Column(name="YEAR")
+	@Column(name = "YEAR")
 	private String year;
-	@Column(name="VALUE")
+	@Column(name = "VALUE")
 	private double value;
-	//DecimalFormat df = new DecimalFormat("$##.00");
 	
 	public GalleryItem() {
 		super();
+		
 	}
-	//public GalleryItem(String title, String artistName, String media, String year, Double value) {
-	//	super();
-	//}
+
 	public GalleryItem(String title, String artistName, String media, String year, double value) {
 		super();
 		this.title = title;
@@ -42,16 +38,10 @@ public class GalleryItem {
 		this.year = year;
 		this.value = value;
 	}
-	public GalleryItem(String title) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public int getId() {
 		return id;
 	}
-
-	//public void setId(int id) {
-	//	this.id = id;
-	//}
 
 	public String getTitle() {
 		return title;
@@ -92,14 +82,22 @@ public class GalleryItem {
 	public void setValue(double value) {
 		this.value = value;
 	}
-	
-	public String returnArtworkDetails() {
-		return " Title: " + title + "; " + "Artist: " + artistName + "; " + "Media: " + media + "; " + "Year: "+ year+ "; " + "Value: "+ value;
+
+	@Override
+	public String toString() {
+		return "GalleryItem [id=" + id + ", title=" + title + ", artistName=" + artistName + ", media=" + media
+				+ ", year=" + year + ", value=" + value + "]";
 	}
-	public Object getArtwork() {
-		return null;
+
+	public String returnGalleryItemDetails() {
+		return "Art Gallery Item Details: " + title + ", " + artistName + ", " + media + ", " + year + ", " + "$" + value;
 	}
-	
-	
-	
+
+	public void setItem(String item) {
+			
+	}
+
+	public void setStore(String store) {
+				
+	}
 }
