@@ -31,7 +31,7 @@ public class viewAllItemsServlet extends HttpServlet {
 		if(dao.showAllItems().isEmpty()) {
 			request.setAttribute("allItems", " ");
 		}
-		getServletContext().getRequestDispatcher("/gallery.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/art-gallery.jsp").forward(request, response);
 	}
 
 	/**
